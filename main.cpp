@@ -20,65 +20,6 @@ return 0;
 }
 
 
-//need ways to remove elements, and complete elements:
-
-/*
-void modifyList(Materials & materials)
-{
-	char chinput = 'x';
-	int input = -1;
-
-	while (input != 0)
-	{
-		while(chinput != 'Q')
-		{
-			cout << "Lets change some materials. What is the index\n";
-			cout << "of the list element you'd like to modify?\n";
-			cout << "enter '0' to exit this loop.        ";
-			cin >> input;
-			cin.ignore(100, '\n');
-	
-			if(input == 0)
-			{
-				break;
-			}
-	
-			while(input < 0 || input > materials.getSize())
-			{
-				cout << "\nINVALID INPUT, TRY AGAIN!   ";
-				cin >> input;
-				cin.ignore(100, '\n');
-			}
-		
-			cout << "\n\nOkay, element #" << input << ", what would you like to do?\n";
-			cout << "E: EDIT\n";
-			cout << "R: REMOVE\n";
-			cout << "Q: QUIT\n";
-			cout << "CHOICE: ";
-			cin >> chinput;
-			cin.ignore(100, '\n');
-			cout << "\n\n";
-
-			chinput = toupper(chinput);
-
-			switch(chinput)
-			{
-				case 'Q':
-					cout << "Done modifying. \n\n";
-					break;
-				case 'R':
-					materials.remove(input);
-					break;
-				case 'E':
-					materials.edit(input);
-					break;
-			}
-		}
-	}
-	materials.display();
-}
-*/
-
 void modifyList(Materials & materials)
 {
 	char chinput = 'x';

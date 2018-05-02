@@ -34,7 +34,6 @@ class Reading: public Mat
 	public:
 		Reading();
 		Reading(const Reading &to_copy);
-		//annotate with override or final
 		~Reading() override;
 
 		Reading(char * in_name, char * in_author, int in_chapter, int in_page);
@@ -59,7 +58,6 @@ class Exercise: public Mat
 
 		void display() override;
 
-//		void unlink(int &i);
 		Exercise * getNext();
 		void setNext(Exercise * in_next);
 		void edit() override;
@@ -80,7 +78,6 @@ class Exercise_Set: public Mat
 		void add(Exercise * in_ex);
 
 		void display() override;
-//		void complete();
 		void edit() override;
 
 	protected:

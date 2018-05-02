@@ -92,13 +92,11 @@ void Materials::remove()
 		{
 			head = head->getNext();
 
-//			node->setPrev(NULL);
-//			node->setNext(NULL);
+
 			delete node;
 			node = head;
 		}
-//		node->setPrev(NULL);
-//		node->setNext(NULL);
+
 		delete node;
 		head = NULL;
 		tail = NULL;
@@ -133,8 +131,7 @@ void Materials::remove(int index)
 			n = node->getNext();
 		}
 
-//		node->setPrev(NULL);
-//		node->setNext(NULL);
+
 		delete node;
 		node = NULL;
 
@@ -266,7 +263,6 @@ MatNode::MatNode(): mat(NULL), prev(NULL), next(NULL)
 
 MatNode::MatNode(const MatNode & to_copy): mat(NULL), prev(NULL), next(NULL)
 {
-	//mat = new Mat(*to_copy.mat);
 }
 
 MatNode::~MatNode()

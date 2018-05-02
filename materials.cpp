@@ -20,7 +20,7 @@ Mat::~Mat()
 	delete[] name;
 	name = NULL;
 }
-//converting int to bool, use bool instead -> completed(0)
+
 Mat::Mat(char * in_name): name(NULL), completed(false)
 {
 	name = new char[strlen(in_name)+1];
@@ -39,7 +39,7 @@ void Mat::display()
 		cout << "  incomplete  \n";
 	}
 }
-//int to bool -> completed = 1;
+
 void Mat::complete()
 {
 	completed = true;
