@@ -16,7 +16,7 @@ class Mat
 		Mat(const Mat &to_copy);
 		virtual ~Mat();
 
-		Mat(char * in_name);
+	explicit Mat(char * in_name);
 	
 		virtual void display();
 		virtual void complete();
@@ -34,12 +34,13 @@ class Reading: public Mat
 	public:
 		Reading();
 		Reading(const Reading &to_copy);
-		~Reading();
+		//annotate with override or final
+		~Reading() override;
 
 		Reading(char * in_name, char * in_author, int in_chapter, int in_page);
 
-		void display();
-		void edit();
+		void display() override;
+		void edit() override;
 
 	protected:
 		char * author;
@@ -52,16 +53,16 @@ class Exercise: public Mat
 	public:
 		Exercise();
 		Exercise(const Exercise &to_copy);
-		~Exercise();
+		~Exercise() override;
 
-		Exercise(char * in_name);
+	explicit Exercise(char * in_name);
 
-		void display();
+		void display() override;
 
 //		void unlink(int &i);
 		Exercise * getNext();
 		void setNext(Exercise * in_next);
-		void edit();
+		void edit() override;
 
 	protected: 
 		Exercise * next;
@@ -72,15 +73,15 @@ class Exercise_Set: public Mat
 	public:
 		Exercise_Set();
 		Exercise_Set(const Exercise_Set &to_copy);
-		~Exercise_Set();
-	
-		Exercise_Set(char * in_name);
+		~Exercise_Set() override;
+
+	explicit Exercise_Set(char * in_name);
 	
 		void add(Exercise * in_ex);
 
-		void display();
+		void display() override;
 //		void complete();
-		void edit();
+		void edit() override;
 
 	protected:
 		void recursive_delete(Exercise * node);
@@ -97,12 +98,12 @@ class Lecture: public Mat
 	public:
 		Lecture();
 		Lecture(const Lecture &to_copy);
-		~Lecture();
+		~Lecture() override;
 
 		Lecture(char *, char *, const char *, int);
 
-		void display();
-		void edit();
+		void display() override;
+		void edit() override;
 	
 	protected:
 		char * presenter;

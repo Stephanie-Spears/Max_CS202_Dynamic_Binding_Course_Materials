@@ -93,7 +93,7 @@ void modifyList(Materials & materials)
 		cin >> chinput;
 		cin.ignore(100, '\n');
 		cout << "\n\n";
-		chinput = toupper(chinput);
+		chinput = static_cast<char>(toupper(chinput));
 		switch(chinput)
 		{
 			case 'Q':
@@ -135,7 +135,7 @@ void modifyList(Materials & materials)
 					cin.ignore(100, '\n');
 					cout << "\n\n";
 
-					chinput = toupper(chinput);
+					chinput = static_cast<char>(toupper(chinput));
 	
 					switch(chinput)
 					{
@@ -151,11 +151,13 @@ void modifyList(Materials & materials)
 						case 'C':
 							materials.complete(input);
 							break;
+						default:break;
 					}
 				materials.display();
 				input = -1;
 				}
 			}
+			default:break;
 		}
 	}
 }
@@ -177,7 +179,7 @@ void getUserInput(Materials & materials)
 		cin.ignore(100, '\n');
 		cout << "\n";
 	
-		input = toupper(input);
+		input = static_cast<char>(toupper(input));
 
 		switch(input)
 		{
@@ -186,8 +188,8 @@ void getUserInput(Materials & materials)
 				break;
 			case 'R':
 			{
-				char * name = new char[arrlength];
-				char * author = new char[arrlength];
+				auto * name = new char[arrlength];
+				auto * author = new char[arrlength];
 				int chapter, page;
 				cout << "Adding reading.\n";
 				cout << "What is the name of the reading material?  ";
@@ -200,8 +202,8 @@ void getUserInput(Materials & materials)
 				cout << "\nWhat is the page number?  ";
 				cin >> page;
 				cin.ignore(100, '\n');
-	
-				Reading * r = new Reading(name, author, chapter, page);
+
+				auto * r = new Reading(name, author, chapter, page);
 	
 				materials.add(*r);
 
@@ -212,7 +214,7 @@ void getUserInput(Materials & materials)
 			}	
 			case 'E':
 			{
-				char * setname = new char[arrlength];
+				auto * setname = new char[arrlength];
 				int length;
 				cout << "Adding an exercise set.\n";
 				cout << "What is the name of the set?  ";
@@ -221,13 +223,13 @@ void getUserInput(Materials & materials)
 				cin >> length;
 				cin.ignore(100, '\n');
 				cout << "\n\n";
-				Exercise_Set * ex = new Exercise_Set(setname);
+				auto * ex = new Exercise_Set(setname);
 				for(int i = 1; i <= length; ++i)
 				{
-					char * exname = new char[arrlength];
+					auto * exname = new char[arrlength];
 					cout << "What is question #" << i << "?  ";
 					cin.getline(exname, arrlength);
-					Exercise * e = new Exercise(exname);
+					auto * e = new Exercise(exname);
 					ex->add(e);
 					delete[] exname;
 				}
@@ -240,8 +242,8 @@ void getUserInput(Materials & materials)
 			}
 			case 'L':
 			{
-				char * name = new char[arrlength];
-				char * presenter = new char[arrlength];
+				auto * name = new char[arrlength];
+				auto * presenter = new char[arrlength];
 				const char * medium;
 				int numSlides;
 				char ch = 'x';
@@ -255,7 +257,7 @@ void getUserInput(Materials & materials)
 				cout << "\n(O)nline, or in (C)lass?     ";
 				cin >> ch;
 				cin.ignore(100, '\n');
-				ch = toupper(ch);
+				ch = static_cast<char>(toupper(ch));
 				switch(ch)
 				{
 					case 'O':
@@ -271,14 +273,15 @@ void getUserInput(Materials & materials)
 				cout << "\nHow many slides in the lecture?  ";
 				cin >> numSlides;
 				cin.ignore(100, '\n');
-	
-				Lecture * l = new Lecture(name, presenter, medium, numSlides);
+
+				auto * l = new Lecture(name, presenter, medium, numSlides);
 
 				materials.add(*l);
 			
 				delete[] name;
 				delete[] presenter;
 			}
+			default:break;
 		}
 	}
 	materials.display();

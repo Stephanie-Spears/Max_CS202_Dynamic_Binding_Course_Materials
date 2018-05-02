@@ -32,7 +32,7 @@ void Materials::add(Mat & to_add)
 	}
 	else
 	{
-		MatNode * newNode = new MatNode(tail, to_add, NULL);
+		auto * newNode = new MatNode(tail, to_add, NULL);
 		tail->setNext(newNode);
 		tail = newNode;
 	}

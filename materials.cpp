@@ -20,8 +20,8 @@ Mat::~Mat()
 	delete[] name;
 	name = NULL;
 }
-
-Mat::Mat(char * in_name): name(NULL), completed(0)
+//converting int to bool, use bool instead -> completed(0)
+Mat::Mat(char * in_name): name(NULL), completed(false)
 {
 	name = new char[strlen(in_name)+1];
 	strcpy(name, in_name);
@@ -39,10 +39,10 @@ void Mat::display()
 		cout << "  incomplete  \n";
 	}
 }
-
+//int to bool -> completed = 1;
 void Mat::complete()
 {
-	completed = 1;
+	completed = true;
 }
 
 bool Mat::isComplete()
@@ -106,9 +106,9 @@ Exercise::Exercise(): Mat(), next(NULL)
 
 Exercise::Exercise(const Exercise &to_copy): Mat(to_copy), next(NULL)
 {}
-
+//use trivial default -> used to be {}
 Exercise::~Exercise()
-{}
+= default;
 
 Exercise::Exercise(char * in_name): Mat(in_name), next(NULL)
 {}
@@ -156,7 +156,7 @@ Exercise_Set::Exercise_Set(const Exercise_Set &to_copy): Mat(to_copy), head(NULL
 	while(from->getNext() != to_copy.head)
 	{
 		//make a new exercise that is a copy of "from"
-		Exercise * a = new Exercise(*from->getNext());
+		auto * a = new Exercise(*from->getNext());
 		//set that exercise as the next element in the "to list"
 		to->setNext(a);
 		//step forward in the "from stream"
@@ -257,7 +257,7 @@ void Exercise_Set::edit()
 	cin >> ch;
 	cin.ignore(100, '\n');
 	cout << "\n\n";
-	ch = toupper(ch);
+	ch = static_cast<char>(toupper(ch));
 
 	switch(ch)
 	{
@@ -281,10 +281,10 @@ void Exercise_Set::edit()
 		}
 		case 'A':
 		{
-			char * exname = new char[256];
+			auto * exname = new char[256];
 			cout << "What is the new question? \n";
 			cin.getline(exname, 256);
-			Exercise * e = new Exercise(exname);
+			auto * e = new Exercise(exname);
 			add(e);
 			break;
 		}
@@ -303,7 +303,8 @@ void Exercise_Set::edit()
 				return;
 			}
 			int count = 1;
-			recursive_edit(0, to_complete, count, head);
+			//int to bool -> recursive_edit(0, ...)
+			recursive_edit(false, to_complete, count, head);
 
 			Exercise * oldHead = head;
 			while(head->isComplete())
@@ -317,7 +318,8 @@ void Exercise_Set::edit()
 			}
 			break;
 
-		}		
+		}
+		default:break;
 	}
 }
 
@@ -392,7 +394,7 @@ void Lecture::display()
 
 void Lecture::edit()
 {
-	char * newPresenter = new char[256];
+	auto * newPresenter = new char[256];
 	display();
 	cout << "New presenter name: ";
 	cin.getline(newPresenter, 256);
